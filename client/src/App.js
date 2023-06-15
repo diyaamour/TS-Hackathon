@@ -1,12 +1,14 @@
 import React from 'react';
-import Form from './components/Form';
-
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Home from './views/Home.js';
 
 function App() {
   return (
     <div className="App">
-      <h1>Form Submission</h1>
-      <Form/>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   );
 }

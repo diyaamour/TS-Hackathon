@@ -4,6 +4,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 function Form() {
+    const [teacher, setTeacher] = useState('');
+    const [organization, setOrganization] = useState('');
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [image, setImage] = useState(null);
@@ -11,7 +13,12 @@ function Form() {
     const [submitError, setSubmitError] = useState(null);
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
-
+    const handleTeacherChange = (e) => {
+        setTeacher(e.target.value);
+    }
+    const handleOrganizationChange = (e) => {
+        setOrganization(e.target.value);
+    }
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     }
@@ -34,6 +41,8 @@ function Form() {
         const bodyWithoutPTags = body.replace(/<\/?p>/g, '');
 
         const formData = new FormData();
+        formData.append('teacher', teacher);
+        formData.append('organization', organization);
         formData.append('title', title);
         formData.append('body', bodyWithoutPTags);
         formData.append('image', image);
@@ -45,47 +54,80 @@ function Form() {
                         'Content-Type': 'multipart/form-data',
                     },
                 })
-                    setSubmitSuccess(true);
-                    setTitle('');
-                    setBody('');
-                    setImage(null);
-                } catch(err) {
-                    console.log(err);
-                    setSubmitError('An error occurred while submitting the form.');
-                    setSubmitting(false);
-                };
-
+            setSubmitSuccess(true);
+            setTeacher('');
+            setOrganization('');
+            setTitle('');
+            setBody('');
+            setImage(null);
+        } catch (err) {
+            console.log(err);
+            setSubmitError('An error occurred while submitting the form.');
+            setSubmitting(false);
         };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="title">Title:</label>
-                <input type="text"
-                    name="title"
-                    value={title}
-                    onChange={handleTitleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="body">Body:</label>
-                <ReactQuill value={body} onChange={handleBodyChange} />
-            </div>
-            <div>
-                <label htmlFor="image">Image:</label>
-                <input type='file'
-                    id='image'
-                    name='image'
-                    onChange={handleImageChange}
-                />
-            </div>
-            <button type='submit'  >
-                Submit
-            </button>
-            {submitError && <p>{submitError}</p>}
-            {submitSuccess && <p>Form submitted successfully!</p>}
+    };
 
-        </form>
+    return (
+        <div className='box'>
+            <h1 className='form-title'>Share Your Success and Win</h1>
+            <div className='description'>
+
+                <p >Calling all teachers using CC studies in their classrooms! Participate in our competition by submitting your implementation entries via MY TS account, complete with photo documentations. This opportunity is open to both CC cloud and CC print users, including Preschool and IT2 CC and Cloud. Showcase your interest areas, student work, what we know charts, what we want to know charts, question of the day, and end of study celebration for a chance to inspire others and win exciting prizes!</p>
+            </div>
+
+            <div className='form'>
+                <form onSubmit={handleSubmit} className='form-box' >
+                    <div className="userForm">
+                        <div class="form-group" id="formGroupExampleInput">
+                            <label htmlFor="teacher">Teacher Name:</label>
+                            <input type="text" 
+                            class="form-control" 
+                            id="formGroupExampleInput" 
+                            placeholder="Example input" 
+                            onChange={handleTeacherChange}/>
+                        </div>
+                        <div class="form-group" id="formGroupExampleInput-2">
+                            <label htmlFor="organization">Organization Name:</label>
+                            <input type="text" 
+                            class="form-control" 
+                            placeholder="Organization Name" 
+                            onChange={handleOrganizationChange}/>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label htmlFor="title">Title:</label>
+                        <input type="text"
+                            class="form-control"
+                            name="title"
+                            id="title-input"
+                            value={title}
+                            onChange={handleTitleChange}
+                            placeholder="Example input" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="body">Body:</label>
+                        <ReactQuill value={body} onChange={handleBodyChange} id="wysiwyg" />
+                    </div>
+                    <div className="form-group" id="image-attachment">
+                        <label htmlFor="image">Image: </label>
+                        <input type="file" class="form-control"
+                            id='image' name='image'
+                            onChange={handleImageChange} />
+                    </div>
+                    <p className="text-xs">By clicking the submit button below I agree that Teaching Strategies may collect my personal information to identify me and provide me with marketing information, company updates, information about events, and product information and as described in the <a href="https://teachingstrategies.com/privacy-policy/" target="_blank" style={{ color: "#009cc0" }}>Privacy Policy</a>.</p>
+                    <div className="form-container">
+                        <button id="form-submit-btn">Submit</button>
+                        <div className="message-container">
+                            {submitError && <p className="error-message">{submitError}</p>}
+                            {submitSuccess && <p className="success-message">Form submitted successfully!</p>}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
     );
 }
 
