@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -14,73 +14,56 @@ function Form() {
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
+        // console.log("title "+ e.target.value);
     }
 
     const handleBodyChange = (value) => {
         setBody(value);
+        // console.log("body " + value);
     };
 
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        // console.log('Selected file:' + file); // Check if the file is logged correctly
         setImage(file);
     };
 
-    // re-use after setting up server side 
-    // useEffect(() => {
-    //     const handleSubmit = async () => {
-    //         if (!submitting) return;
-
-    //         // Create form data to send
-    //         const formData = new FormData();
-    //         formData.append('title', title);
-    //         formData.append('body', body);
-    //         formData.append('image', image);
-
-    //         try {
-    //             // Send form data to the server
-    //             const response = await axios.post('/api/submit', formData);
-
-    //             // Handle success or display an appropriate message
-    //             console.log(response.data);
-    //             setSubmitSuccess(true);
-    //         } catch (error) {
-    //             // Handle error or display an appropriate message
-    //             console.error(error);
-    //             setSubmitError('An error occurred while submitting the form.');
-    //         } finally {
-    //             setSubmitting(false);
-    //         }
-    //     };
-
-    //     if (submitting) {
-    //         handleSubmit();
-    //     }
-    // }, [submitting, title, body, image]);
-
-    // const handleSubmitClick = (e) => {
-    //     e.preventDefault();
-    //     setSubmitting(true);
-    // };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Create form data to log
-        const formData = {
-            title,
-            body,
-            image,
-        };
+        const bodyWithoutPTags = body.replace(/<\/?p>/g, '');
 
-        console.log(formData);
-    };
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('body', bodyWithoutPTags);
+        formData.append('image', image);
+
+        try {
+            await axios
+                .post('http://localhost:8000/api/reviews', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                    setSubmitSuccess(true);
+                    setTitle('');
+                    setBody('');
+                    setImage(null);
+                } catch(err) {
+                    console.log(err);
+                    setSubmitError('An error occurred while submitting the form.');
+                    setSubmitting(false);
+                };
+
+        };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="title">Title:</label>
-                <input type="text" name="title"
+                <input type="text"
+                    name="title"
                     value={title}
                     onChange={handleTitleChange}
                 />
@@ -91,18 +74,20 @@ function Form() {
             </div>
             <div>
                 <label htmlFor="image">Image:</label>
-                <input type='file' id='image' onChange={handleImageChange} />
+                <input type='file'
+                    id='image'
+                    name='image'
+                    onChange={handleImageChange}
+                />
             </div>
-            <button type='submit' >
+            <button type='submit'  >
                 Submit
             </button>
-            
+            {submitError && <p>{submitError}</p>}
+            {submitSuccess && <p>Form submitted successfully!</p>}
+
         </form>
     );
 }
 
 export default Form;
-
-// onClick={handleSubmitClick}
-//             {submitError && <p>{submitError}</p>}
-//             {submitSuccess && <p>Form submitted successfully!</p>}
