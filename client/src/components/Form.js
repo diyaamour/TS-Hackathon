@@ -72,10 +72,8 @@ function Form() {
         <div className='box'>
             <h1 className='form-title'>Share Your Success and Win</h1>
             <div className='description'>
-
                 <p >Calling all teachers using CC studies in their classrooms! Participate in our competition by submitting your implementation entries via MY TS account, complete with photo documentations. This opportunity is open to both CC cloud and CC print users, including Preschool and IT2 CC and Cloud. Showcase your interest areas, student work, what we know charts, what we want to know charts, question of the day, and end of study celebration for a chance to inspire others and win exciting prizes!</p>
             </div>
-
             <div className='form'>
                 <form onSubmit={handleSubmit} className='form-box' >
                     <div className="userForm">
@@ -123,7 +121,6 @@ function Form() {
                             {submitSuccess && <p className="success-message">Form submitted successfully!</p>}
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
