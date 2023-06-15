@@ -23,11 +23,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post('/', upload.single('image'), async (req, res) => {
-  const { title, body } = req.body;
+  const { teacher, organization, title, body } = req.body;
   const file = req.file;
   try {
 
     const newReview = new Review({
+      teacher,
+      organization,
       title,
       body,
       image: {
@@ -39,7 +41,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     });
 
     const review = await newReview.save();
-    console.log('Received data:', { title, body, file })
+    console.log('Received data:', { teacher, organization, title, body, file })
     return res.status(200).json({ message: 'Form submitted successfully' });
   } catch (error) {
     return res.status(400).json({ ...error, message: error.message });
@@ -62,20 +64,3 @@ module.exports = {
   reviewRouter: router,
 };
 
-
-// const { 
-//   handleCreateReview, 
-//   handleGetAllReviews ,
-//   handleGetReviewById,
-//   handleUpdateReviewById,
-//   handleDeleteReviewById
-// } = require("../controllers/review.controller");
-// const router = express.Router();
-// router.post("/", handleCreateReview);
-// router.get("/", handleGetAllReviews);
-// router.get("/:id", handleGetReviewById);
-// router.put("/:id", handleUpdateReviewById);
-// router.delete('/:id', handleDeleteReviewById);
-// module.exports = {
-//   reviewRouter: router,
-// };
