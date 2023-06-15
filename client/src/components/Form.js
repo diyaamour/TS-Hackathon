@@ -14,7 +14,6 @@ function Form() {
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
-        // console.log("title "+ e.target.value);
     }
 
     const handleBodyChange = (value) => {
