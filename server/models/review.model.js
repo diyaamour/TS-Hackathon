@@ -20,9 +20,9 @@ const reviewSchema = new mongoose.Schema({
   image: {
     originalName: String,
     filename: String,
-    path: String,
+    // path: String,
+    url: String,
     size: Number,
-    // Add any other relevant file metadata fields here
   },
   createdAt: {
     type: Date,

@@ -60,6 +60,9 @@ function Form() {
             setTitle('');
             setBody('');
             setImage(null);
+            setTeacher('');
+            setOrganization('');
+
         } catch (err) {
             console.log(err);
             setSubmitError('An error occurred while submitting the form.');
@@ -77,31 +80,31 @@ function Form() {
             <div className='form'>
                 <form onSubmit={handleSubmit} className='form-box' >
                     <div className="userForm">
-                        <div class="form-group" id="formGroupExampleInput">
+                        <div className="form-group" id="formGroupExampleInput">
                             <label htmlFor="teacher">Teacher Name:</label>
-                            <input type="text" 
-                            class="form-control" 
-                            id="formGroupExampleInput" 
-                            placeholder="Example input" 
-                            onChange={handleTeacherChange}/>
+                            <input type="text"
+                                className="form-control"
+                                id="formGroupExampleInput"
+                                placeholder="Teacher Name"
+                                onChange={handleTeacherChange} />
                         </div>
                         <div class="form-group" id="formGroupExampleInput-2">
                             <label htmlFor="organization">Organization Name:</label>
-                            <input type="text" 
-                            class="form-control" 
-                            placeholder="Organization Name" 
-                            onChange={handleOrganizationChange}/>
+                            <input type="text"
+                                className="form-control"
+                                placeholder="Organization Name"
+                                onChange={handleOrganizationChange} />
                         </div>
                     </div>
                     <div class="form-group" >
                         <label htmlFor="title">Title:</label>
                         <input type="text"
-                            class="form-control"
+                            className="form-control"
                             name="title"
                             id="title-input"
                             value={title}
                             onChange={handleTitleChange}
-                            placeholder="Example input" />
+                            placeholder="Title" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="body">Body:</label>
@@ -129,3 +132,6 @@ function Form() {
 }
 
 export default Form;
+
+{/* <Link to="/entries" style={{ textDecoration: 'none' }}>
+                        </Link> */}

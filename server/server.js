@@ -12,5 +12,3 @@ app.use(express.json());
 app.use('/api/reviews', reviewRouter); 
 
 app.listen(port, () => console.log(`Listening on port ${port} for REQuests to RESpond to.`));
-// app.use('/api/posts', postsRouter); // new routes
-// const postsRouter = require('./routes/review.routes');

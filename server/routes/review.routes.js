@@ -1,7 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
+const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
 const {Review} = require('../models/review.model');
+
+aws.config.update({
+  accessKeyId: 'AKIA4PQ7R3QKHQXYETPA',
+  secretAccessKey: '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',
+  region: 'us-east-1',
+});
+
 // handleCreateReview,
 const {
   handleCreateReview,
@@ -20,7 +29,22 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
+
+const s3 = new aws.S3();
+const upload = multer({
+  storage: multerS3({
+    s3,
+    bucket: 'ts-hackathon',
+    acl: 'public-read', // Set the appropriate ACL for your use case
+    metadata: (req, file, cb) => {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: (req, file, cb) => {
+      cb(null, Date.now().toString() + '_' + file.originalname);
+    },
+  }),
+});
 
 router.post('/', upload.single('image'), async (req, res) => {
   const { teacher, organization, title, body } = req.body;
@@ -35,7 +59,8 @@ router.post('/', upload.single('image'), async (req, res) => {
       image: {
         originalName: file.originalname,
         filename: file.filename,
-        path: file.path,
+        // path: file.path,
+        url: file.location,
         size: file.size,
       },
     });
