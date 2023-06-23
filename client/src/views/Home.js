@@ -3,8 +3,6 @@ import Form from '../components/Form';
 import NavigationBar from '../components/NavBar';
 
 function Home () {
-
-
     return (
         <>
             <NavigationBar />
