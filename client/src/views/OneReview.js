@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import NavigationBar from '../components/NavBar';
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export const OneReview = (props) => {
 
     const { id } = useParams();
-    const navigate = useNavigate();
-
     const [review, setReview] = useState({});
 
     useEffect(() => {
@@ -36,9 +34,7 @@ export const OneReview = (props) => {
         <>
             <NavigationBar />
             <div className="w-50 mx-auto text-center mt-5">
-
                 <div className="shadow mb-4 rounded border p-4" style={{textAlign: 'center'}}>
-
                     <h1 className='form-title'>Title: {title}</h1><br />
                     <h6 className='form-title'>Teacher Name: <span style={{ color: 'black', fontWeight: 'normal' }}>{teacher}</span> </h6>
                     <h6 className="form-title">
@@ -49,7 +45,6 @@ export const OneReview = (props) => {
                     {image && image.url && <img src={image.url} alt="image" style={{width: 400}} />}
                 </div>
             </div>
-
         </>
     )
 }
