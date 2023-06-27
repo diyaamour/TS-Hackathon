@@ -132,6 +132,3 @@ function Form() {
 }
 
 export default Form;
-
-{/* <Link to="/entries" style={{ textDecoration: 'none' }}>
-                        </Link> */}
