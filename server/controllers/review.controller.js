@@ -2,9 +2,7 @@ const {Review} = require("../models/review.model");
 
 const handleCreateReview = async (req, res) => {
     console.log('controller: handleCreateReview', req.body);
-
     try {
-
         const newReview = new Review({
             teacher,
             organization,
@@ -17,7 +15,6 @@ const handleCreateReview = async (req, res) => {
                             size: file.size,
                         },
                     });
-
         const review = await Review.create({ title, body });
         return res.json(review);
     } catch (error) {
@@ -28,7 +25,6 @@ const handleCreateReview = async (req, res) => {
 
 const handleGetAllReviews = async (req, res) => {
     console.log('controller: handleGetAllReviews');
-
     try {
         const reviews = await Review.find();
         return res.json(reviews);
@@ -39,7 +35,6 @@ const handleGetAllReviews = async (req, res) => {
 
 const handleGetReviewById = async (req, res) => {
     console.log('controller: handleGetReviewById', req.params);
-
     try {
         const review = await Review.findById(req.params.id);
         return res.json(review);
@@ -49,7 +44,6 @@ const handleGetReviewById = async (req, res) => {
 };
 const handleUpdateReviewById = async (req, res) => {
     console.log('controller: handleUpdateReviewById', req.params, req.body);
-
     try {
         const review = await Review.findByIdAndUpdate(req.params.id, req.body,
             {
@@ -63,7 +57,6 @@ const handleUpdateReviewById = async (req, res) => {
 };
 const handleDeleteReviewById = async (req, res) => {
     console.log('controller: handleDeleteReviewById', req.params);
-
     try {
         const review = await Review.findByIdAndDelete(req.params.id);
         return res.json(review);

@@ -11,7 +11,6 @@ aws.config.update({
   region: 'us-east-1',
 });
 
-// handleCreateReview,
 const {
   handleCreateReview,
   handleGetAllReviews,
@@ -29,7 +28,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// const upload = multer({ storage });
+// const upload = multer({ storage }); // upload to local storage
 
 const s3 = new aws.S3();
 const upload = multer({
@@ -74,16 +73,10 @@ router.post('/', upload.single('image'), async (req, res) => {
 });
 
 // router.post('/', upload.single('image'), handleCreateReview);
-
 router.get('/', handleGetAllReviews);
-
 router.get('/:id', handleGetReviewById);
-
 router.put('/:id', upload.single('image'), handleUpdateReviewById);
-
 router.delete('/:id', handleDeleteReviewById);
-
-
 
 module.exports = {
   reviewRouter: router,
