@@ -72,7 +72,6 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 });
 
-// router.post('/', upload.single('image'), handleCreateReview);
 router.get('/', handleGetAllReviews);
 router.get('/:id', handleGetReviewById);
 router.put('/:id', upload.single('image'), handleUpdateReviewById);
