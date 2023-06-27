@@ -5,8 +5,6 @@
 }
 
 .navbar {
-    /* outline: 1px red solid; */
-    /* margin: 10px 0;s */
     justify-content: space-between;
     height: 70px;
 }
@@ -24,7 +22,6 @@
 }
 
 .box {
-    /* outline: 1px solid cyan; */
     margin: 20px 100px;
     column-span: 8;
 
@@ -55,36 +52,22 @@
     width: 80%;
 }
 
-#formGroupExampleInput {
-    /* margin-left: 48px; */
-    /* width: 40%; */
-}
-
 #formGroupExampleInput-2 {
     margin-left: 48px;
-    /* width: 40%; */
 }
 
 #wysiwyg {
-
     height: 400px;
-    /* width: 80%; */
 }
 
 .form {
-    /* outline: 1px green solid; */
     box-shadow: 2px 2px 5px #333;
     padding: 0 0 5px;
 }
 
 .form-box {
-    /* outline: red 1px solid; */
     margin: 20px 20px;
     align-items: center;
-}
-
-#title-input {
-    /* width: 80%; */
 }
 
 #image-attachment {
@@ -174,7 +157,6 @@
 
 .text-xs {
     margin-top: 20px;
-    /* font-size: 0.65rem; */
     width: 80%;
     color: rgb(57 57 57/var(--tw-text-opacity));
     font-family: 'Open Sans', sans-serif;
