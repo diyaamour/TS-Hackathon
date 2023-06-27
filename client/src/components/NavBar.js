@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 
 
 const NavigationBar = () => {
-
-
     return (
         <>
             <Navbar bg="light" variant="light" className='navbar'>
