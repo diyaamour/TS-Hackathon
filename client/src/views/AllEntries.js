@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import NavigationBar from '../components/NavBar';
 import { Link } from "react-router-dom";
 
-
-
 export const AllEntries = (props) => {
     const [entries, setEntries] = useState([0]);
 
