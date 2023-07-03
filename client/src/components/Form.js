@@ -100,8 +100,8 @@ function Form() {
                         <label htmlFor="title">Title:</label>
                         <input type="text"
                             className="form-control"
-                            name="title"
                             id="title-input"
+                            name="title"
                             value={title}
                             onChange={handleTitleChange}
                             placeholder="Title" />
