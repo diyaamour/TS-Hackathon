@@ -42,7 +42,7 @@ export const OneReview = (props) => {
                     </h6>
                     <p className="form-title">Body: <span style={{color: "black", fontWeight: "normal"}}>{body}</span></p>
                     <h6 className='form-title'>Attachments: </h6>
-                    {image && image.url && <img src={image.url} alt="image" style={{width: 400}} />}
+                    {image && image.url && <img src={image.url} alt="image" style={{width: 400}}/>}
                 </div>
             </div>
         </>
