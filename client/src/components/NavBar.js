@@ -10,7 +10,7 @@ const NavigationBar = () => {
     return (
         <>
             <Navbar bg="light" variant="light" className='navbar'>
-                <Container style={{ justifyContent: "space-between" }}>
+                <Container style={{justifyContent: "space-between" }}>
                     <div>
                         <Navbar.Brand href="/" >
                             <svg class="w-200 h-200 text-black transition hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 800 142" id='logo'>
@@ -25,7 +25,7 @@ const NavigationBar = () => {
                             <Nav.Link href="#pricing" className='item'>Success Stories</Nav.Link>
                             <Nav.Link href="#pricing" className='item'>Pricing</Nav.Link>
                             <Nav.Link href="#pricing" className='item'>About</Nav.Link>
-                            <Nav.Link as={Link} to="/entries" style={{ textDecoration: 'none' }} className='item'>
+                            <Nav.Link as={Link} to="/entries" style={{textDecoration: 'none'}} className='item'>
                                 Submissions
                             </Nav.Link>
                             <Button id='contact-button' className='item'>Contact</Button>

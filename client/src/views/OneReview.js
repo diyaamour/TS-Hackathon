@@ -36,7 +36,7 @@ export const OneReview = (props) => {
             <div className="w-50 mx-auto text-center mt-5">
                 <div className="shadow mb-4 rounded border p-4" style={{textAlign: 'center'}}>
                     <h1 className='form-title'>Title: {title}</h1><br />
-                    <h6 className='form-title'>Teacher Name: <span style={{ color: 'black', fontWeight: 'normal' }}>{teacher}</span> </h6>
+                    <h6 className='form-title'>Teacher Name: <span style={{ color: 'black', fontWeight: 'normal'}}>{teacher}</span> </h6>
                     <h6 className="form-title">
                         Organization: <span style={{ color: 'black', fontWeight: 'normal'  }}>{organization}</span>
                     </h6>
