@@ -17,7 +17,6 @@ export const AllEntries = (props) => {
                 console.log(err);
             });
     }, []);
-
     return (
         <>
         <NavigationBar />
