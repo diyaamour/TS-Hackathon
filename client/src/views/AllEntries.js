@@ -24,7 +24,7 @@ export const AllEntries = (props) => {
         <div className="w-50 mx-auto text-center" style={{marginTop: "20px"}}>
         <h1 className='form-title'>All Submissions</h1>
                 {entries.map((entry) => {
-                    const { _id, teacher, organization, title, } = entry; //body, image 
+                    const { _id, teacher, organization, title, body, image } = entry;
 
                     return (
                         <div key={_id} className="shadow mb-4 rounded border p-4 mt-4">
