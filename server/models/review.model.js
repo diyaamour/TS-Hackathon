@@ -21,9 +21,8 @@ const reviewSchema = new mongoose.Schema({
     originalName: String,
     filename: String,
     // path: String,
-    
     url: String,
-    size: Number,
+    size: Number
   },
   createdAt: {
     type: Date,
